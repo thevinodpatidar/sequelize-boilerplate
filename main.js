@@ -1,10 +1,16 @@
 
 const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
-const sequelize = require("./config/database");
+const sequelize = require("./src/models");
 
+app.use(logger('dev'));
 
+// Parse incoming requests data (https://github.com/expressjs/body-parser)
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 (async ()=> {
     try {

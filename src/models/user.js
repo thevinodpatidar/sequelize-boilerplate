@@ -1,15 +1,19 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class user extends Model { };
-  user.init({
-    email: DataTypes.STRING,
-    password : DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'user',
-  });
-  return user;
-};
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require("./index");
+
+const User = sequelize.define("User",{
+  email : {
+    type : DataTypes.STRING,
+    allowNull : false
+  },
+  password : {
+    type : DataTypes.STRING,
+    allowNull : false
+  }
+},
+{}
+);
+  
+
+module.exports = User;
